@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Original placeholder mark: a chamfered hexagon with a circuit trace.
+       Used as a CSS mask, so only its shape matters; the palette colours it. -->
+  <path fill="#fff" fill-rule="evenodd" d="M32 2 58 17v22L44 55 32 62 6 47V17ZM32 9 12 20.5v23L32 55l8-4.6 12-13.9V20.5Z"/>
+  <path fill="#fff" d="M20 24h14l6 6h4v4h-6l-6-6H20Z"/>
+  <path fill="#fff" d="M20 38h10v4H20zM34 38h10v4H34z"/>
+</svg>

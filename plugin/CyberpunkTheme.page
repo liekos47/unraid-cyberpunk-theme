@@ -1,0 +1,39 @@
+Menu="Buttons"
+Link="cp-theme-anchor"
+Markdown="false"
+---
+<?php
+/* Cyberpunk webGUI theme. "Buttons" pages are evaluated on every page, after
+ * the built-in theme stylesheet, so these links override it without touching
+ * any Unraid file. Kill switch: touch /boot/config/cyberpunk-theme/DISABLED
+ * (takes effect on the next page load, no reboot).
+ */
+$cpRoot = '/usr/local/emhttp/plugins/cyberpunk-theme';
+if (!file_exists('/boot/config/cyberpunk-theme/DISABLED') && file_exists("$cpRoot/cyberpunk.css")):
+  $cpLogo = file_exists("$cpRoot/icons/logo.png") ? 'logo.png' : 'logo.svg';
+  $cpFavicons = file_exists("$cpRoot/icons/fav-green-on.png");
+?>
+<link type="text/css" rel="stylesheet" href="<?autov('/plugins/cyberpunk-theme/fonts.css')?>">
+<link type="text/css" rel="stylesheet" href="<?autov('/plugins/cyberpunk-theme/palette.css')?>">
+<link type="text/css" rel="stylesheet" href="<?autov('/plugins/cyberpunk-theme/cyberpunk.css')?>">
+<style>:root{--cp-logo:url('/plugins/cyberpunk-theme/icons/<?=$cpLogo?>')}</style>
+<script>
+(function () {
+  document.documentElement.classList.add('cp-theme');
+<?php if ($cpFavicons): ?>
+  // Swap the array-state favicon (green/red/yellow) for your logo in the same state colour.
+  var re = /\/webGui\/images\/((green|red|yellow)-on)\.png/;
+  function swap(link) {
+    var m = (link.getAttribute('href') || '').match(re);
+    if (m) link.setAttribute('href', '/plugins/cyberpunk-theme/icons/fav-' + m[1] + '.png');
+  }
+  var links = document.querySelectorAll('link[rel~="icon"]');
+  for (var i = 0; i < links.length; i++) {
+    swap(links[i]);
+    new MutationObserver(function (ms) { ms.forEach(function (m) { swap(m.target); }); })
+      .observe(links[i], { attributes: true, attributeFilter: ['href'] });
+  }
+<?php endif; ?>
+})();
+</script>
+<?php endif; ?>

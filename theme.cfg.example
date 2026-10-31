@@ -1,0 +1,3 @@
+# Copy to /boot/config/cyberpunk-theme/theme.cfg and pick a palette.
+# netrunner = red and cyan, relic = yellow and blue. Add your own as palettes/<name>.css.
+PALETTE=netrunner

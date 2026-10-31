@@ -1,0 +1,19 @@
+/* relic: acid yellow headings, electric blue values, on near-black navy. */
+:root {
+    --cp-pri: #F1FF5E;        /* headings, active tab, accents */
+    --cp-pri-dark: #A17E33;
+    --cp-pri-faint: #423B1C;
+    --cp-sec: #6DA1FF;        /* values, links, bars */
+    --cp-sec-dim: #4F88D5;
+    --cp-hi: #5EF6FF;         /* highlights */
+    --cp-faint: #181C34;      /* hairlines, bar tracks */
+    --cp-ok: #1DED83;
+    --cp-warn: #F86A32;
+    --cp-err: #FF6159;
+    --cp-bg: #0E0E17;
+    --cp-panel: #121221;
+    --cp-panel-alt: #161625;
+    --cp-deep: #0C0B15;
+    --cp-txt: #C0C8CF;
+    --cp-txt-dim: #A09A96;
+}

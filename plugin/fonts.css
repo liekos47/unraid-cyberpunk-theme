@@ -1,0 +1,8 @@
+/* Rajdhani (Indian Type Foundry) and Orbitron (Matt McInerney), both SIL Open
+ * Font License 1.1. install.sh downloads them once from github.com/google/fonts
+ * into the flash drive; if they are missing the theme falls back to the stock fonts. */
+@font-face{font-family:cp-rajdhani;font-weight:400;font-style:normal;font-display:swap;src:url('fonts/Rajdhani-Regular.ttf') format('truetype')}
+@font-face{font-family:cp-rajdhani;font-weight:500;font-style:normal;font-display:swap;src:url('fonts/Rajdhani-Medium.ttf') format('truetype')}
+@font-face{font-family:cp-rajdhani;font-weight:600;font-style:normal;font-display:swap;src:url('fonts/Rajdhani-SemiBold.ttf') format('truetype')}
+@font-face{font-family:cp-rajdhani;font-weight:700;font-style:normal;font-display:swap;src:url('fonts/Rajdhani-Bold.ttf') format('truetype')}
+@font-face{font-family:cp-orbitron;font-weight:400 900;font-style:normal;font-display:swap;src:url('fonts/Orbitron-wght.ttf') format('truetype')}

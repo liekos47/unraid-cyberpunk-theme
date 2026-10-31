@@ -1,0 +1,19 @@
+/* netrunner: hot red headings, cyan values, on near-black navy. */
+:root {
+    --cp-pri: #FF6159;        /* headings, active tab, accents */
+    --cp-pri-dark: #AE3B36;
+    --cp-pri-faint: #431618;
+    --cp-sec: #5EF6FF;        /* values, links, bars */
+    --cp-sec-dim: #349197;
+    --cp-hi: #FFD741;         /* highlights */
+    --cp-faint: #172C2E;      /* hairlines, bar tracks */
+    --cp-ok: #1DED83;
+    --cp-warn: #F86A32;
+    --cp-err: #FF3E34;
+    --cp-bg: #0E0E17;
+    --cp-panel: #121221;
+    --cp-panel-alt: #161625;
+    --cp-deep: #0C0B15;
+    --cp-txt: #C0C8CF;
+    --cp-txt-dim: #A09A96;
+}

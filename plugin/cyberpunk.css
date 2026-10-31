@@ -1,0 +1,300 @@
+/* Cyberpunk webGUI theme for Unraid 7.x.
+ * Loaded after the stock theme stylesheet by CyberpunkTheme.page. Colours
+ * come from palette.css (--cp-*), chosen in theme.cfg. This file maps them
+ * onto the variables the stock themes set, then adds the few shape changes
+ * the variables cannot express. Works on any base theme; "black" is the
+ * recommended one in Settings > Display Settings.
+ */
+
+/* 1. Map the palette onto Unraid's theme variables.
+ * The selector is :root:not(#cp-x) on purpose: its ID-level specificity beats
+ * the ".Theme--white:root" blocks in Unraid's per-page sheets, so the theme
+ * stays dark whichever base theme Display Settings has selected. */
+:root:not(#cp-x) {
+    --text-color: var(--cp-txt);
+    --alt-text-color: var(--cp-txt-dim);
+    --disabled-text-color: #757575;
+    /* Stock themes use this only for header text, header links and the
+       right-hand nav icons, which sit on a light header there. Ours is dark. */
+    --inverse-text-color: var(--cp-txt);
+    --link-text-color: var(--cp-sec);
+    --blockquote-text-color: var(--cp-txt);
+
+    --background-color: var(--cp-bg);
+    --opac-background-color: rgba(14, 14, 23, 0.96);
+    --mild-background-color: var(--cp-panel);
+    --dashboard-background-color: var(--cp-panel);
+    --dashboard-title-action-color: var(--cp-faint);
+    --dashboard-icon-color: var(--cp-sec);
+    --shade-bg-color: var(--cp-panel-alt);
+    --inverse-background-color: var(--cp-txt);
+    --radio-background-color: var(--cp-faint);
+
+    --border-color: var(--cp-faint);
+    --table-border-color: var(--cp-faint);
+    --table-background-color: var(--cp-panel);
+    --table-header-background-color: var(--cp-deep);
+    --hover-table-row-background-color: rgba(255, 255, 255, 0.04);
+    --input-border-color: var(--cp-sec-dim);
+    --textarea-border-color: var(--cp-faint);
+    --inverse-border-color: var(--cp-faint);
+    --hr-color: var(--cp-faint);
+
+    --usage-bar-background-color: var(--cp-faint);
+    --usage-bar-used-background-color: var(--cp-sec);
+    --usage-disk-background-color: var(--cp-faint);
+
+    --header-text-color: var(--cp-pri);
+    --header-background-color: var(--cp-deep);
+    /* The 7.x header components (server name, description, user menu) read
+       these, falling back to #1c1c1c / #999 when nothing sets them. */
+    --header-text-primary: var(--cp-txt);
+    --header-text-secondary: var(--cp-txt-dim);
+    --title-header-background-color: var(--cp-deep);
+    --footer-text: var(--cp-txt-dim);
+    --footer-background-color: var(--cp-deep);
+
+    --brand-orange: var(--cp-pri);
+    --brand-red: var(--cp-pri-dark);
+    --button-text-color: var(--cp-pri);
+    --hover-button-text-color: var(--cp-bg);
+    --hover-button-border: var(--cp-pri);
+    --hover-button-background: var(--cp-pri);
+    --focus-input-bg-color: var(--cp-panel-alt);
+
+    --scrollbar-color: var(--cp-sec-dim);
+    --scrollbar-hover-color: var(--cp-sec);
+    --checkbox-color: var(--cp-sec-dim);
+    --checkbox-hover-color: var(--cp-sec);
+
+    /* Palette colours the base sheets use directly for status. */
+    --orange-800: var(--cp-pri);
+    --green-200: var(--cp-ok);
+    --green-800: var(--cp-ok);
+    --red-500: var(--cp-err);
+    --red-600: var(--cp-err);
+    --orange-200: var(--cp-hi);
+    --orange-300: var(--cp-warn);
+    --blue-700: var(--cp-sec);
+    --blue-800: var(--cp-sec);
+    --orange-900: var(--cp-warn);
+
+    /* Pale tints are only ever backgrounds (notice banners, syslog line
+       classes, warning rows, blockquotes). Make them dark so the bright
+       status colours above read on them. */
+    --yellow-100: #241F0E;
+    --yellow-200: #241F0E;
+    --green-100: #0F2A1C;
+    --red-100: #31181E;
+    --red-300: #31181E;
+    --blue-100: #13262A;
+    --blue-200: #13262A;
+    --blue-300: #13262A;
+
+    /* Theme variables the stock black theme leaves to defaults. Set here so a
+       white, gray or azure base cannot leak light surfaces in. */
+    --alt-background-color: var(--cp-panel-alt);
+    --alt-border-color: var(--cp-faint);
+    --dashboard-border-color: var(--cp-faint);
+    --table-alt-border-color: var(--cp-faint);
+    --disabled-border-color: #3A3A4A;
+    --disabled-input-background-color: var(--cp-deep);
+    --disabled-input-border-color: #3A3A4A;
+    --input-bg-color: transparent;
+    --focus-input-background-color: var(--cp-panel-alt);
+    --focus-input-border-color: var(--cp-sec);
+    --small-shadow: none;
+    --bg-opacity-10: rgba(0, 0, 0, 0.1);
+    --bg-opacity-30: rgba(0, 0, 0, 0.3);
+    --dynamix-box-text-color: var(--cp-txt);
+    --dynamix-filetree-bg-color: var(--cp-panel);
+    --dynamix-select-bg-color: var(--cp-panel);
+    --dynamix-select-box-shadow: none;
+    --dynamix-select-disabled-bg-color: var(--cp-deep);
+    --dynamix-select-disabled-border-color: #3A3A4A;
+    --dynamix-select-disabled-color: #757575;
+    --dynamix-sweet-alert-icon-bg-color: var(--cp-deep);
+    --dynamix-sweet-alert-text-color: var(--cp-txt);
+    --dynamix-tablesorter-thead-th-bg-color: var(--cp-deep);
+    --dynamix-tablesorter-thead-th-text-color: var(--cp-pri);
+    --dynamix-tablesorter-thead-row-border-color: var(--cp-faint);
+    --dynamix-tablesorter-tbody-row-bg-color: var(--cp-panel);
+    --dynamix-tablesorter-tbody-row-alt-bg-color: var(--cp-panel-alt);
+    --dynamix-tablesorter-tbody-row-border-color: var(--cp-faint);
+    --dynamix-ui-dropdownchecklist-color: var(--cp-txt);
+    --dynamix-ui-dropdownchecklist-color-alt1: var(--cp-panel);
+    --dynamix-ui-dropdownchecklist-color-alt2: var(--cp-panel-alt);
+    --dynamix-ui-dropdownchecklist-dropcontainer-border-color: var(--cp-faint);
+    --dynamix-ui-state-active-border-color: var(--cp-pri);
+
+    /* jQuery UI dialogs (container edit, file manager, popups). */
+    --dynamix-jquery-ui-button-text-color: var(--cp-pri);
+    --dynamix-jquery-ui-button-background-start: var(--cp-pri-dark);
+    --dynamix-jquery-ui-button-background-end: var(--cp-pri);
+    --dynamix-jquery-ui-button-hover-color: var(--cp-bg);
+    --dynamix-jquery-ui-default-background: transparent;
+    --dynamix-jquery-ui-border-color: var(--cp-faint);
+    --dynamix-jquery-ui-header-background: var(--cp-deep);
+    --dynamix-jquery-ui-header-color: var(--cp-pri);
+    --dynamix-jquery-ui-content-background: var(--cp-panel);
+    --dynamix-jquery-ui-content-color: var(--cp-txt);
+    --dynamix-jquery-ui-active-background: var(--cp-panel-alt);
+    --dynamix-jquery-ui-dropcontainer-background: var(--cp-panel);
+    --dynamix-jquery-ui-disabled-color: #757575;
+    --dynamix-jquery-ui-disabled-border-color: #3A3A4A;
+    --dynamix-jquery-ui-disabled-background: var(--cp-deep);
+    --dynamix-jquery-ui-text-color: var(--cp-txt);
+
+    /* Per-page sheets with a .Theme--white override, reset to their dark
+       :root defaults (taken from the Unraid 7.3.3 sheets). */
+    --browse-icon-color: var(--cp-sec-dim);
+    --browse-table-tbody-tr-hover-td-bg-color: rgba(255, 255, 255, 0.06);
+    --dashstats-pie-after-bg-color: var(--cp-panel);
+    --input-dfm-filter-bg-color: var(--cp-panel);
+    --input-dfm-target-filetree-bg-color: var(--cp-panel);
+    --input-dfm-target-text-color: var(--cp-txt);
+    --syslinux-textarea-menu-border-color: var(--cp-faint);
+    --useradd-dropbox-bg-color: var(--cp-panel);
+    --useradd-dropbox-border-color: var(--cp-faint);
+    --useredit-dropbox-bg-color: var(--cp-panel);
+    --useredit-dropbox-border-color: var(--cp-faint);
+}
+
+/* Notice banners (plugin updates, "done", "alert") pin their text to black. */
+html.cp-theme .upgrade_notice,
+html.cp-theme .ca_element_notice {
+    color: var(--cp-txt);
+    border-radius: 0;
+}
+
+/* 2. Type: Rajdhani for the interface, Orbitron for headings. Logs and code keep bitstream. */
+html.cp-theme body,
+html.cp-theme input,
+html.cp-theme select,
+html.cp-theme textarea,
+html.cp-theme button {
+    font-family: cp-rajdhani, clear-sans, sans-serif;
+}
+html.cp-theme body {
+    font-weight: 500;
+    font-size: 1.45rem;
+}
+html.cp-theme div.title,
+html.cp-theme table.dashboard tr:first-child > td,
+html.cp-theme .nav-item a {
+    font-family: cp-orbitron, cp-rajdhani, sans-serif;
+    letter-spacing: 2px;
+}
+
+/* 3. Header: dark strip, accent rule, host logo on the left. */
+html.cp-theme #header {
+    background-image: none;
+    border-bottom: 1px solid var(--cp-pri);
+    padding-left: 76px;
+}
+html.cp-theme #header::before {
+    content: "";
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    width: 48px;
+    height: 48px;
+    transform: translateY(-50%);
+    background-color: var(--cp-pri);
+    -webkit-mask: var(--cp-logo) center / contain no-repeat;
+    mask: var(--cp-logo) center / contain no-repeat;
+}
+
+/* 4. Tabs: muted until active, active tab filled with the accent. */
+html.cp-theme .nav-tile {
+    border-bottom: 1px solid var(--cp-faint);
+}
+html.cp-theme .nav-item a {
+    color: var(--cp-sec-dim);
+    font-size: 1.1rem;
+}
+html.cp-theme .nav-item:hover a {
+    color: var(--cp-sec);
+}
+html.cp-theme .nav-item.active a {
+    color: var(--cp-bg);
+    background-color: var(--cp-pri);
+}
+html.cp-theme .nav-item:after,
+html.cp-theme .nav-item.active:after {
+    display: none;
+}
+
+/* 5. Section titles and dashboard tiles: accent edge, cut corner. */
+html.cp-theme div.title {
+    color: var(--cp-pri);
+    border-bottom: none;
+    border-left: 2px solid var(--cp-pri);
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+}
+html.cp-theme table.dashboard tbody {
+    border: none;
+    border-left: 2px solid var(--cp-pri);
+}
+html.cp-theme table.dashboard tr:first-child > td {
+    color: var(--cp-pri);
+    font-size: 1.3rem;
+    text-transform: uppercase;
+}
+
+/* Unassigned Devices ships one sheet per base theme with fixed colours. */
+html.cp-theme :is(table.usb_mounts, table.samba_mounts, table.usb_absent) thead tr:first-child td {
+    background-color: var(--cp-deep);
+    color: var(--cp-pri);
+}
+html.cp-theme :is(table.usb_mounts, table.samba_mounts, table.usb_absent) tbody tr:nth-child(even) {
+    background-color: var(--cp-panel-alt);
+}
+
+/* 6. Bars: flat, square, cyan fill. */
+html.cp-theme .usage-bar,
+html.cp-theme .usage-bar > span {
+    border-radius: 0;
+    box-shadow: none;
+}
+html.cp-theme .usage-bar > span {
+    color: var(--cp-bg);
+}
+
+/* Dashboard load figures get their colour inline from dynamix JS; remap the
+   "normal" green, which is too dark on the panels. Warning and critical keep
+   their own colours. */
+html.cp-theme [style*="rgb(79, 138, 16)"] {
+    color: var(--cp-ok) !important;
+}
+
+/* 7. Buttons: thin accent outline, cut corner, filled on hover. */
+html.cp-theme input[type=button],
+html.cp-theme input[type=submit],
+html.cp-theme input[type=reset],
+html.cp-theme button:where(:not(.unapi *)),
+html.cp-theme a.button:where(:not(.unapi *)) {
+    background: transparent;
+    border: 1px solid var(--cp-pri);
+    border-radius: 0;
+    color: var(--cp-pri);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+}
+html.cp-theme input[type=button]:hover,
+html.cp-theme input[type=submit]:hover,
+html.cp-theme input[type=reset]:hover,
+html.cp-theme button:hover:where(:not(.unapi *)),
+html.cp-theme a.button:hover:where(:not(.unapi *)) {
+    background: var(--cp-pri);
+    color: var(--cp-bg);
+}
+
+/* 8. Text selection and focus in the palette. */
+html.cp-theme ::selection {
+    background: var(--cp-sec);
+    color: var(--cp-bg);
+}
