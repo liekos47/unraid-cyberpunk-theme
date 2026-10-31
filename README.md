@@ -41,6 +41,18 @@ Unraid 7.3.3 dashboard, black base theme, placeholder logo. Server details in th
 
 ![phantom-liberty palette](docs/screenshots/phantom-liberty.png)
 
+**midnight**
+
+![midnight palette](docs/screenshots/midnight.png)
+
+**neon-night**
+
+![neon-night palette](docs/screenshots/neon-night.png)
+
+**normandy**
+
+![normandy palette](docs/screenshots/normandy.png)
+
 ## How it works
 
 Unraid evaluates every plugin page marked `Menu="Buttons"` in the `<head>` of every webGUI page, right after its own theme stylesheet. This theme is one such page (`plugin/CyberpunkTheme.page`) that adds three stylesheets. **No Unraid file is modified.** The stock themes are built on CSS variables, so the theme mostly remaps those variables, plus a few rules for shapes and for colours that Unraid or its plugins set directly.
