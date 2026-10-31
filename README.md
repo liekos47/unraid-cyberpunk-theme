@@ -81,10 +81,22 @@ That writes `icons/logo.png` (header mark) and `icons/fav-{green,red,yellow}-on.
 
 Only use artwork you have the right to use.
 
-## Turn off, uninstall
+## Turn off, uninstall, back to the stock theme
 
-- Off until you remove the file, no reboot: `touch /boot/config/cyberpunk-theme/DISABLED`
-- Uninstall (removes the live copy and the `go` lines, keeps the flash folder): `bash /boot/config/cyberpunk-theme/uninstall.sh`
+Turn it off for now (no reboot; delete the file to turn it back on):
+
+```bash
+touch /boot/config/cyberpunk-theme/DISABLED
+```
+
+Uninstall and go back to the stock Unraid theme:
+
+```bash
+bash /boot/config/cyberpunk-theme/uninstall.sh   # removes the live theme and its lines in /boot/config/go
+rm -rf /boot/config/cyberpunk-theme              # optional: delete the files from the flash drive
+```
+
+Then reload the webGUI (Ctrl+F5). If you switched the base theme to black for this, set it back in Settings > Display Settings (Unraid's default is white).
 
 ## Add a palette
 
