@@ -25,8 +25,8 @@ From a shell on the server (Tools > Terminal, or SSH):
 ```bash
 # 1. Put the files on the flash drive
 mkdir -p /boot/config/cyberpunk-theme
-cd /tmp && curl -fsSL https://github.com/<you>/<repo>/archive/refs/heads/main.tar.gz | tar xz
-cp -r /tmp/<repo>-main/* /boot/config/cyberpunk-theme/
+cd /tmp && curl -fsSL https://github.com/liekos47/unraid-cyberpunk-theme/archive/refs/tags/v1.0.0.tar.gz | tar xz
+cp -r /tmp/unraid-cyberpunk-theme-1.0.0/* /boot/config/cyberpunk-theme/
 
 # 2. Optional: pick the palette (default netrunner)
 echo 'PALETTE=relic' > /boot/config/cyberpunk-theme/theme.cfg
