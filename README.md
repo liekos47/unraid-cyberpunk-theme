@@ -69,8 +69,8 @@ From a shell on the server (Tools > Terminal, or SSH):
 ```bash
 # 1. Put the files on the flash drive
 mkdir -p /boot/config/cyberpunk-theme
-cd /tmp && curl -fsSL https://github.com/liekos47/unraid-cyberpunk-theme/archive/refs/tags/v1.1.0.tar.gz | tar xz
-cp -r /tmp/unraid-cyberpunk-theme-1.1.0/* /boot/config/cyberpunk-theme/
+cd /tmp && curl -fsSL https://github.com/liekos47/unraid-cyberpunk-theme/archive/refs/tags/v1.2.0.tar.gz | tar xz
+cp -r /tmp/unraid-cyberpunk-theme-1.2.0/* /boot/config/cyberpunk-theme/
 
 # 2. Optional: pick the palette (default netrunner)
 echo 'PALETTE=relic' > /boot/config/cyberpunk-theme/theme.cfg
@@ -115,7 +115,15 @@ Then reload the webGUI (Ctrl+F5). If you switched the base theme to black for th
 
 ## Add a palette
 
-Copy `palettes/netrunner.css` to `palettes/<name>.css`, change the `--cp-*` colours, set `PALETTE=<name>` in `theme.cfg` and re-run `install.sh`. Check that body text (`--cp-txt`) and dim text (`--cp-sec-dim`) stay readable on `--cp-panel` and `--cp-deep`.
+Copy `palettes/netrunner.css` to `palettes/<name>.css`, change the `--cp-*` colours, set `PALETTE=<name>` in `theme.cfg` and re-run `install.sh`. Then check it:
+
+```bash
+python tools/check_contrast.py palettes/<name>.css   # offline, every text colour on every surface
+```
+
+and paste `tools/contrast-scan.js` into the browser console on the Dashboard, Main and Plugins pages.
+
+The full steps, from what each colour does to testing on a server without losing your setup, scrubbed screenshots and releasing, are in [docs/DEVELOPING.md](docs/DEVELOPING.md).
 
 ## Credits and licences
 
