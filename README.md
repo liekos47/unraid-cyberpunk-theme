@@ -1,6 +1,6 @@
 # Unraid cyberpunk theme
 
-[![Support me on Ko-fi](https://img.shields.io/badge/Ko--fi-Support%20the%20mod-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/liekos47)
+[![Support me on Ko-fi](https://img.shields.io/badge/Ko--fi-Support%20the%20theme-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/liekos47)
 
 A dark, neon webGUI theme for Unraid 7.x: near-black panels, angular cut corners, Rajdhani and Orbitron type, and five palettes.
 
