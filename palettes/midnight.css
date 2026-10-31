@@ -1,0 +1,20 @@
+/* midnight: cyan and electric blue on midnight blue, with ice-white
+ * highlights. An all-blue cyber look; colours chosen by eye. */
+:root {
+    --cp-pri: #2FE6FF;        /* headings, active tab, accents: cyan */
+    --cp-pri-dark: #1A8FA8;
+    --cp-pri-faint: #0C2B3A;
+    --cp-sec: #6FA8FF;        /* values, links, bars: electric blue */
+    --cp-sec-dim: #5E95DD;
+    --cp-hi: #C8F4FF;         /* highlights: ice white */
+    --cp-faint: #16254A;      /* hairlines, bar tracks */
+    --cp-ok: #4CEFB0;
+    --cp-warn: #FFC861;
+    --cp-err: #FF5F6E;
+    --cp-bg: #050A1A;         /* midnight blue */
+    --cp-panel: #0A1430;
+    --cp-panel-alt: #0F1A3A;
+    --cp-deep: #030713;
+    --cp-txt: #DDE8FA;
+    --cp-txt-dim: #9DB0D0;
+}

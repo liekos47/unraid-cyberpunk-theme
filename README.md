@@ -2,7 +2,7 @@
 
 [![Support me on Ko-fi](https://img.shields.io/badge/Ko--fi-Support%20the%20theme-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/liekos47)
 
-A dark, neon webGUI theme for Unraid 7.x: near-black panels, angular cut corners, Rajdhani and Orbitron type, and seven palettes.
+A dark, neon webGUI theme for Unraid 7.x: near-black panels, angular cut corners, Rajdhani and Orbitron type, and eight palettes.
 
 | Palette | Headings and accents | Values and links |
 |---|---|---|
@@ -11,10 +11,11 @@ A dark, neon webGUI theme for Unraid 7.x: near-black panels, angular cut corners
 | `edgerunner` | jacket yellow `#FCE300` on black | speed-trail green `#22F5B0` |
 | `lunar` | hot pink `#FF7AD9` on deep violet | cyan `#7CF6FF`, pastel violet highlights |
 | `phantom-liberty` | crimson `#FF3D55` on red-black | silver `#C8D8D8`, orange-red highlights |
+| `midnight` | cyan `#2FE6FF` on midnight blue | electric blue `#6FA8FF`, ice-white highlights |
 | `neon-night` | neon pink `#FF3FD2` on blue-black | neon cyan `#2EF2FF`, electric violet highlights |
 | `normandy` | omni-tool orange `#FF8A2A` on navy-black | holographic blue `#79C7FF`, N7 red highlights |
 
-Run one palette per server and you can tell your boxes apart at a glance. `edgerunner` and `lunar` are inspired by David and Lucy from *Cyberpunk: Edgerunners* (colours picked by eye); `phantom-liberty` takes its hues from the *Phantom Liberty* expansion's key art. `neon-night` is a pink and cyan dual-neon look, and `normandy` is inspired by the interface of the *Mass Effect* games (colours picked by eye). Only hex values are used, no official asset.
+Run one palette per server and you can tell your boxes apart at a glance. `edgerunner` and `lunar` are inspired by David and Lucy from *Cyberpunk: Edgerunners* (colours picked by eye); `phantom-liberty` takes its hues from the *Phantom Liberty* expansion's key art. `midnight` is an all-blue cyber look, `neon-night` a pink and cyan dual-neon one, and `normandy` is inspired by the interface of the *Mass Effect* games (colours picked by eye). Only hex values are used, no official asset.
 
 ## Previews
 
