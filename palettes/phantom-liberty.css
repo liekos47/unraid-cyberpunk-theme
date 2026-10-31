@@ -1,0 +1,21 @@
+/* phantom-liberty: crimson and silver on red-black, with an orange-red
+ * highlight. Inspired by the Phantom Liberty expansion's key art (crimson
+ * banner, silver lettering); hex values only, no game asset is included. */
+:root {
+    --cp-pri: #FF3D55;        /* headings, active tab, accents: crimson */
+    --cp-pri-dark: #A02020;
+    --cp-pri-faint: #401020;
+    --cp-sec: #C8D8D8;        /* values, links, bars: silver */
+    --cp-sec-dim: #8FA3A6;
+    --cp-hi: #E76542;         /* highlights: banner orange-red */
+    --cp-faint: #3A1520;      /* hairlines, bar tracks */
+    --cp-ok: #5CE59A;
+    --cp-warn: #FFB347;
+    --cp-err: #FF5A4F;
+    --cp-bg: #110A0D;         /* red-black */
+    --cp-panel: #1A0F14;
+    --cp-panel-alt: #21131A;
+    --cp-deep: #0C0709;
+    --cp-txt: #E8E2E3;
+    --cp-txt-dim: #AFA4A7;
+}

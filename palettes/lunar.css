@@ -1,0 +1,21 @@
+/* lunar: pink and pastel violet with cyan, on deep violet night.
+ * Inspired by Lucy in Cyberpunk: Edgerunners (her hair, eye makeup and the
+ * moon); colours chosen by eye, not taken from any official asset. */
+:root {
+    --cp-pri: #FF7AD9;        /* headings, active tab, accents: hot pink */
+    --cp-pri-dark: #B0558F;
+    --cp-pri-faint: #3D1A36;
+    --cp-sec: #7CF6FF;        /* values, links, bars: cyan */
+    --cp-sec-dim: #5FA9C9;
+    --cp-hi: #C9A2FF;         /* highlights: pastel violet */
+    --cp-faint: #24203A;      /* hairlines, bar tracks */
+    --cp-ok: #5CF2B0;
+    --cp-warn: #FFB86B;
+    --cp-err: #FF5C7A;
+    --cp-bg: #0D0B16;         /* deep violet night */
+    --cp-panel: #15122A;
+    --cp-panel-alt: #1A1631;
+    --cp-deep: #0A0812;
+    --cp-txt: #E3DDF2;        /* moonlight white */
+    --cp-txt-dim: #ADA6C4;
+}

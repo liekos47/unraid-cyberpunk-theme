@@ -21,7 +21,7 @@
     --blockquote-text-color: var(--cp-txt);
 
     --background-color: var(--cp-bg);
-    --opac-background-color: rgba(14, 14, 23, 0.96);
+    --opac-background-color: color-mix(in srgb, var(--cp-bg) 96%, transparent);
     --mild-background-color: var(--cp-panel);
     --dashboard-background-color: var(--cp-panel);
     --dashboard-title-action-color: var(--cp-faint);

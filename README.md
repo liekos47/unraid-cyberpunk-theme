@@ -6,8 +6,35 @@ A dark, neon webGUI theme for Unraid 7.x: near-black navy panels, angular cut co
 |---|---|---|
 | `netrunner` (default) | red `#FF6159` | cyan `#5EF6FF` |
 | `relic` | acid yellow `#F1FF5E` | electric blue `#6DA1FF` |
+| `edgerunner` | jacket yellow `#FCE300` on black | speed-trail green `#22F5B0` |
+| `lunar` | hot pink `#FF7AD9` on deep violet | cyan `#7CF6FF`, pastel violet highlights |
+| `phantom-liberty` | crimson `#FF3D55` on red-black | silver `#C8D8D8`, orange-red highlights |
 
-Run one palette per server and you can tell your boxes apart at a glance.
+Run one palette per server and you can tell your boxes apart at a glance. `edgerunner` and `lunar` are inspired by David and Lucy from *Cyberpunk: Edgerunners* (colours picked by eye); `phantom-liberty` takes its hues from the *Phantom Liberty* expansion's key art. Only hex values are used, no official asset.
+
+## Previews
+
+Unraid 7.3.3 dashboard, black base theme, placeholder logo. Server details in the screenshots are replaced with stand-ins.
+
+**netrunner**
+
+![netrunner palette](docs/screenshots/netrunner.png)
+
+**relic**
+
+![relic palette](docs/screenshots/relic.png)
+
+**edgerunner**
+
+![edgerunner palette](docs/screenshots/edgerunner.png)
+
+**lunar**
+
+![lunar palette](docs/screenshots/lunar.png)
+
+**phantom-liberty**
+
+![phantom-liberty palette](docs/screenshots/phantom-liberty.png)
 
 ## How it works
 
@@ -25,8 +52,8 @@ From a shell on the server (Tools > Terminal, or SSH):
 ```bash
 # 1. Put the files on the flash drive
 mkdir -p /boot/config/cyberpunk-theme
-cd /tmp && curl -fsSL https://github.com/liekos47/unraid-cyberpunk-theme/archive/refs/tags/v1.0.0.tar.gz | tar xz
-cp -r /tmp/unraid-cyberpunk-theme-1.0.0/* /boot/config/cyberpunk-theme/
+cd /tmp && curl -fsSL https://github.com/liekos47/unraid-cyberpunk-theme/archive/refs/tags/v1.1.0.tar.gz | tar xz
+cp -r /tmp/unraid-cyberpunk-theme-1.1.0/* /boot/config/cyberpunk-theme/
 
 # 2. Optional: pick the palette (default netrunner)
 echo 'PALETTE=relic' > /boot/config/cyberpunk-theme/theme.cfg

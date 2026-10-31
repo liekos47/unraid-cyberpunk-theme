@@ -1,0 +1,21 @@
+/* edgerunner: paramedic-jacket yellow on black, with a green speed-trail
+ * accent and a red highlight. Inspired by David Martinez in Cyberpunk:
+ * Edgerunners; colours chosen by eye, not taken from any official asset. */
+:root {
+    --cp-pri: #FCE300;        /* headings, active tab, accents: jacket yellow */
+    --cp-pri-dark: #A89600;
+    --cp-pri-faint: #3A3400;
+    --cp-sec: #22F5B0;        /* values, links, bars: speed-trail green */
+    --cp-sec-dim: #1FA987;
+    --cp-hi: #FF4D5E;         /* highlights */
+    --cp-faint: #1E2A1C;      /* hairlines, bar tracks */
+    --cp-ok: #7CFF4F;
+    --cp-warn: #FF9A3C;
+    --cp-err: #FF4D5E;
+    --cp-bg: #0B0B0D;         /* near-black, the jacket's black panels */
+    --cp-panel: #141416;
+    --cp-panel-alt: #1A1A1D;
+    --cp-deep: #08080A;
+    --cp-txt: #D9D6C8;
+    --cp-txt-dim: #A8A391;
+}
