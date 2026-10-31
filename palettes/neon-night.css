@@ -1,0 +1,21 @@
+/* neon-night: hot pink and cyan in equal measure, on a blue-black night.
+ * A dual-neon look: pink for headings and accents, cyan for values and
+ * bars, electric violet where the two meet. Colours chosen by eye. */
+:root {
+    --cp-pri: #FF3FD2;        /* headings, active tab, accents: neon pink */
+    --cp-pri-dark: #A8278A;
+    --cp-pri-faint: #3A0F33;
+    --cp-sec: #2EF2FF;        /* values, links, bars: neon cyan */
+    --cp-sec-dim: #3FA8C8;
+    --cp-hi: #A98BFF;         /* highlights: electric violet */
+    --cp-faint: #1C2140;      /* hairlines, bar tracks */
+    --cp-ok: #4CF5A8;
+    --cp-warn: #FFC15E;
+    --cp-err: #FF5C8A;
+    --cp-bg: #070914;         /* blue-black night */
+    --cp-panel: #0E1124;
+    --cp-panel-alt: #13172E;
+    --cp-deep: #05060E;
+    --cp-txt: #E2E6F5;
+    --cp-txt-dim: #A3A9C6;
+}

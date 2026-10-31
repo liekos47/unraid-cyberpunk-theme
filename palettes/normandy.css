@@ -1,0 +1,22 @@
+/* normandy: omni-tool orange and holographic blue on navy-black, with an
+ * N7 red for highlights. Inspired by the interface of the Mass Effect games
+ * (galaxy map, codex, omni-tool); colours chosen by eye, no game asset is
+ * included. */
+:root {
+    --cp-pri: #FF8A2A;        /* headings, active tab, accents: omni-tool orange */
+    --cp-pri-dark: #A85414;
+    --cp-pri-faint: #3A1E0A;
+    --cp-sec: #79C7FF;        /* values, links, bars: holographic blue */
+    --cp-sec-dim: #5592C0;
+    --cp-hi: #FF5A52;         /* highlights: N7 red */
+    --cp-faint: #1A2638;      /* hairlines, bar tracks */
+    --cp-ok: #5CE0A0;
+    --cp-warn: #FFC857;
+    --cp-err: #FF4F4F;
+    --cp-bg: #080C14;         /* navy-black */
+    --cp-panel: #0E1522;
+    --cp-panel-alt: #131C2C;
+    --cp-deep: #060910;
+    --cp-txt: #DCE6F0;
+    --cp-txt-dim: #9FB0C2;
+}

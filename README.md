@@ -2,7 +2,7 @@
 
 [![Support me on Ko-fi](https://img.shields.io/badge/Ko--fi-Support%20the%20theme-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/liekos47)
 
-A dark, neon webGUI theme for Unraid 7.x: near-black panels, angular cut corners, Rajdhani and Orbitron type, and five palettes.
+A dark, neon webGUI theme for Unraid 7.x: near-black panels, angular cut corners, Rajdhani and Orbitron type, and seven palettes.
 
 | Palette | Headings and accents | Values and links |
 |---|---|---|
@@ -11,8 +11,10 @@ A dark, neon webGUI theme for Unraid 7.x: near-black panels, angular cut corners
 | `edgerunner` | jacket yellow `#FCE300` on black | speed-trail green `#22F5B0` |
 | `lunar` | hot pink `#FF7AD9` on deep violet | cyan `#7CF6FF`, pastel violet highlights |
 | `phantom-liberty` | crimson `#FF3D55` on red-black | silver `#C8D8D8`, orange-red highlights |
+| `neon-night` | neon pink `#FF3FD2` on blue-black | neon cyan `#2EF2FF`, electric violet highlights |
+| `normandy` | omni-tool orange `#FF8A2A` on navy-black | holographic blue `#79C7FF`, N7 red highlights |
 
-Run one palette per server and you can tell your boxes apart at a glance. `edgerunner` and `lunar` are inspired by David and Lucy from *Cyberpunk: Edgerunners* (colours picked by eye); `phantom-liberty` takes its hues from the *Phantom Liberty* expansion's key art. Only hex values are used, no official asset.
+Run one palette per server and you can tell your boxes apart at a glance. `edgerunner` and `lunar` are inspired by David and Lucy from *Cyberpunk: Edgerunners* (colours picked by eye); `phantom-liberty` takes its hues from the *Phantom Liberty* expansion's key art. `neon-night` is a pink and cyan dual-neon look, and `normandy` is inspired by the interface of the *Mass Effect* games (colours picked by eye). Only hex values are used, no official asset.
 
 ## Previews
 
@@ -106,4 +108,4 @@ Copy `palettes/netrunner.css` to `palettes/<name>.css`, change the `--cp-*` colo
 
 - Code: MIT, see `LICENSE`.
 - Fonts: [Rajdhani](https://github.com/google/fonts/tree/main/ofl/rajdhani) (Indian Type Foundry) and [Orbitron](https://github.com/google/fonts/tree/main/ofl/orbitron) (Matt McInerney), SIL Open Font License 1.1. They are not in this repository: `install.sh` downloads them.
-- A fan-made theme inspired by the look of cyberpunk games. Not affiliated with or endorsed by CD PROJEKT RED or Lime Technology. No game assets are included.
+- A fan-made theme inspired by the look of cyberpunk games. Not affiliated with or endorsed by CD PROJEKT RED, BioWare, Electronic Arts or Lime Technology. No game assets are included.
