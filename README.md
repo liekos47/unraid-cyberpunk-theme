@@ -13,9 +13,9 @@ A dark, neon webGUI theme for Unraid 7.x: near-black panels, angular cut corners
 | `phantom-liberty` | crimson `#FF3D55` on red-black | silver `#C8D8D8`, orange-red highlights |
 | `midnight` | cyan `#2FE6FF` on midnight blue | electric blue `#6FA8FF`, ice-white highlights |
 | `neon-night` | neon pink `#FF3FD2` on blue-black | neon cyan `#2EF2FF`, electric violet highlights |
-| `normandy` | omni-tool orange `#FF8A2A` on navy-black | holographic blue `#79C7FF`, N7 red highlights |
+| `normandy` | title blue `#3199C6` on deep indigo | HUD teal `#8CDBDC`, renegade orange highlights |
 
-Run one palette per server and you can tell your boxes apart at a glance. `edgerunner` and `lunar` are inspired by David and Lucy from *Cyberpunk: Edgerunners* (colours picked by eye); `phantom-liberty` takes its hues from the *Phantom Liberty* expansion's key art. `midnight` is an all-blue cyber look, `neon-night` a pink and cyan dual-neon one, and `normandy` is inspired by the interface of the *Mass Effect* games (colours picked by eye). Only hex values are used, no official asset.
+Run one palette per server and you can tell your boxes apart at a glance. `edgerunner` and `lunar` are inspired by David and Lucy from *Cyberpunk: Edgerunners* (colours picked by eye); `phantom-liberty` takes its hues from the *Phantom Liberty* expansion's key art. `midnight` is an all-blue cyber look, `neon-night` a pink and cyan dual-neon one, and `normandy` uses the interface colours of the original *Mass Effect* (hex values sampled from the game's menus and HUD). Only hex values are used, no official asset.
 
 ## Previews
 
@@ -69,8 +69,8 @@ From a shell on the server (Tools > Terminal, or SSH):
 ```bash
 # 1. Put the files on the flash drive
 mkdir -p /boot/config/cyberpunk-theme
-cd /tmp && curl -fsSL https://github.com/liekos47/unraid-cyberpunk-theme/archive/refs/tags/v1.2.0.tar.gz | tar xz
-cp -r /tmp/unraid-cyberpunk-theme-1.2.0/* /boot/config/cyberpunk-theme/
+cd /tmp && curl -fsSL https://github.com/liekos47/unraid-cyberpunk-theme/archive/refs/tags/v1.2.1.tar.gz | tar xz
+cp -r /tmp/unraid-cyberpunk-theme-1.2.1/* /boot/config/cyberpunk-theme/
 
 # 2. Optional: pick the palette (default netrunner)
 echo 'PALETTE=relic' > /boot/config/cyberpunk-theme/theme.cfg

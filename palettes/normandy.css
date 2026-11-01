@@ -1,22 +1,22 @@
-/* normandy: omni-tool orange and holographic blue on navy-black, with an
- * N7 red for highlights. Inspired by the interface of the Mass Effect games
- * (galaxy map, codex, omni-tool); colours chosen by eye, no game asset is
- * included. */
+/* normandy: Mass Effect 1 interface colours. Title blue and HUD teal on the
+ * deep indigo of the main menu, renegade orange for highlights and paragon
+ * green for status. Hex values sampled from the game's UI (text styles and
+ * menu backdrop); no game asset is included. */
 :root {
-    --cp-pri: #FF8A2A;        /* headings, active tab, accents: omni-tool orange */
-    --cp-pri-dark: #A85414;
-    --cp-pri-faint: #3A1E0A;
-    --cp-sec: #79C7FF;        /* values, links, bars: holographic blue */
-    --cp-sec-dim: #5592C0;
-    --cp-hi: #FF5A52;         /* highlights: N7 red */
-    --cp-faint: #1A2638;      /* hairlines, bar tracks */
-    --cp-ok: #5CE0A0;
-    --cp-warn: #FFC857;
-    --cp-err: #FF4F4F;
-    --cp-bg: #080C14;         /* navy-black */
-    --cp-panel: #0E1522;
-    --cp-panel-alt: #131C2C;
-    --cp-deep: #060910;
-    --cp-txt: #DCE6F0;
-    --cp-txt-dim: #9FB0C2;
+    --cp-pri: #3199C6;        /* headings, active tab, accents: title blue */
+    --cp-pri-dark: #246997;
+    --cp-pri-faint: #0F2333;
+    --cp-sec: #8CDBDC;        /* values, links, bars: HUD teal */
+    --cp-sec-dim: #72BED3;
+    --cp-hi: #FF9142;         /* highlights: renegade orange */
+    --cp-faint: #172A40;      /* hairlines, bar tracks */
+    --cp-ok: #50E280;         /* paragon green */
+    --cp-warn: #FF9900;
+    --cp-err: #FF3333;
+    --cp-bg: #090B1B;         /* main menu indigo */
+    --cp-panel: #0D1426;
+    --cp-panel-alt: #111B30;
+    --cp-deep: #05070F;
+    --cp-txt: #CCFFFF;        /* primary label text */
+    --cp-txt-dim: #99CCCC;    /* standard body text */
 }
