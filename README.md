@@ -13,9 +13,9 @@ A dark, neon webGUI theme for Unraid 7.x: near-black panels, angular cut corners
 | `phantom-liberty` | crimson `#FF3D55` on red-black | silver `#C8D8D8`, orange-red highlights |
 | `midnight` | cyan `#2FE6FF` on midnight blue | electric blue `#6FA8FF`, ice-white highlights |
 | `neon-night` | neon pink `#FF3FD2` on blue-black | neon cyan `#2EF2FF`, electric violet highlights |
-| `normandy` | title blue `#3199C6` on deep indigo | HUD teal `#8CDBDC`, renegade orange highlights |
+| `normandy` (*Mass Effect*) | title blue `#3199C6` on deep indigo | HUD teal `#8CDBDC`, renegade orange highlights |
 
-Run one palette per server and you can tell your boxes apart at a glance. `edgerunner` and `lunar` are inspired by David and Lucy from *Cyberpunk: Edgerunners* (colours picked by eye); `phantom-liberty` takes its hues from the *Phantom Liberty* expansion's key art. `midnight` is an all-blue cyber look, `neon-night` a pink and cyan dual-neon one, and `normandy` uses the interface colours of the original *Mass Effect* (hex values sampled from the game's menus and HUD). Only hex values are used, no official asset.
+Run one palette per server and you can tell your boxes apart at a glance. `edgerunner` and `lunar` are inspired by David and Lucy from *Cyberpunk: Edgerunners* (colours picked by eye); `phantom-liberty` takes its hues from the *Phantom Liberty* expansion's key art. `midnight` is an all-blue cyber look, `neon-night` a pink and cyan dual-neon one, and `normandy` is inspired by *Mass Effect*, named after Shepard's ship: its colours are sampled from the original game's menus and HUD. Only hex values are used, no official asset.
 
 ## Previews
 
@@ -49,7 +49,7 @@ Unraid 7.3.3 dashboard, black base theme, placeholder logo. Server details in th
 
 ![neon-night palette](docs/screenshots/neon-night.png)
 
-**normandy**
+**normandy** (inspired by *Mass Effect*)
 
 ![normandy palette](docs/screenshots/normandy.png)
 
