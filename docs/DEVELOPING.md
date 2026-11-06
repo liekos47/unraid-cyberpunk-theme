@@ -21,7 +21,13 @@ A palette is one file, `palettes/<name>.css`, that sets 16 colours on `:root`. `
 | `--cp-deep` | Header, footer, table headers |
 | `--cp-txt` / `--cp-txt-dim` | Body text, secondary text |
 
-Start from the palette closest to what you want: `cp palettes/netrunner.css palettes/<name>.css`. Put a comment at the top saying what the palette is and where its colours come from.
+Start from the palette closest to what you want: `cp palettes/netrunner.css palettes/<name>.css`. The first line names its place in the settings page list, then a comment says what the palette is and where its colours come from:
+
+```css
+/* @group Mass Effect @desc title blue, HUD teal, renegade orange */
+```
+
+`@group` is the heading it is listed under (the settings page orders Cyberpunk 2077, Cyberpunk: Edgerunners, Neon and Mass Effect first, then any other group alphabetically; a file without the line goes under Custom) and `@desc` is the short description after its name.
 
 **Design rules that keep it readable:**
 
@@ -40,32 +46,25 @@ It tests every text colour against every surface (WCAG 2 contrast) and the hover
 
 ## 3. Test on a server without losing your setup
 
-Set your current install aside, install your working copy, and put it all back when you are done. From a PC with the repo:
+Build the plugin package from your working copy and install it from local files, so nothing is downloaded from GitHub:
 
 ```bash
-git archive --format=tar HEAD | ssh root@<server> '
-  mv /boot/config/cyberpunk-theme /boot/config/cyberpunk-theme.keep
-  mkdir /boot/config/cyberpunk-theme
-  tar xf - --no-same-owner -C /boot/config/cyberpunk-theme
-  echo PALETTE=<name> > /boot/config/cyberpunk-theme/theme.cfg
-  bash /boot/config/cyberpunk-theme/install.sh'
+python tools/build_plugin.py 2026.11.07 v2.0.0     # any version and tag while testing
+ssh root@<server> 'mkdir -p /boot/config/plugins/cyberpunk-theme'
+scp build/cyberpunk-theme-2026.11.07-noarch-1.txz root@<server>:/boot/config/plugins/cyberpunk-theme/
+scp cyberpunk-theme.plg root@<server>:/tmp/
+ssh root@<server> 'plugin install /tmp/cyberpunk-theme.plg'
 ```
 
-Commit first, since `git archive` packs `HEAD`. `--no-same-owner` is needed because the flash drive is FAT32. If the theme was not installed before, skip the `mv` line.
+The plugin finds the package already on the flash drive with the right MD5 and installs it. Pick your palette in Settings > User Utilities > Cyberpunk Theme; the dropdown previews it without saving.
 
-To switch palette while testing (reload the page afterwards with Ctrl+F5):
+- If you already run the plugin, this installs over it and keeps your saved choice. Put your release back afterwards with Plugins > Install Plugin and the normal URL.
+- If you run a manual install, set it aside first: `mv /boot/config/cyberpunk-theme /boot/config/cyberpunk-theme.keep` and `rm -rf /usr/local/emhttp/plugins/cyberpunk-theme`. Afterwards `plugin remove cyberpunk-theme.plg`, move the folder back and run its `install.sh`.
+- To test a boot without rebooting: `removepkg cyberpunk-theme-<version>-noarch-1`, `rm -rf /var/log/plugins/cyberpunk-theme.plg /usr/local/emhttp/plugins/cyberpunk-theme`, then `plugin install` again. That is the state Unraid starts from.
 
-```bash
-ssh root@<server> 'echo PALETTE=<other> > /boot/config/cyberpunk-theme/theme.cfg && bash /boot/config/cyberpunk-theme/install.sh'
-```
+To try a palette file alone on a running install, copy it to `/usr/local/emhttp/plugins/cyberpunk-theme/palettes/` and reload the settings page: it appears in the list straight away (until the next boot).
 
-To put your own install back:
-
-```bash
-ssh root@<server> 'rm -rf /boot/config/cyberpunk-theme && mv /boot/config/cyberpunk-theme.keep /boot/config/cyberpunk-theme && bash /boot/config/cyberpunk-theme/install.sh'
-```
-
-Only the webGUI's look changes during the test. Nothing else on the server is touched, and `touch /boot/config/cyberpunk-theme/DISABLED` turns the theme off at any time.
+Only the webGUI's look changes during the test. Nothing else on the server is touched, and `touch /boot/config/plugins/cyberpunk-theme/DISABLED` turns the theme off at any time, settings page included.
 
 ## 4. Check contrast on the real pages
 
@@ -92,16 +91,24 @@ Screenshots show your server's details, so replace them first:
 
 ## 7. Release
 
-1. Bump the version in the README install lines (the tag in the URL and the extracted folder name).
-2. Commit and push.
-3. Tag and publish the release:
+The plugin has two parts: `cyberpunk-theme.plg` on `main`, which every server checks for updates, and the package `cyberpunk-theme-<version>-noarch-1.txz`, attached to a GitHub release. The `.plg` names the release tag and the package's MD5, so the two must go out together.
+
+1. Pick the plugin version, the release date as `YYYY.MM.DD` (a second release on the same day takes a letter: `2026.11.07a`), and the release tag: a minor version (`2.0.0` to `2.1.0`) for new palettes or features, a patch version (`2.0.0` to `2.0.1`) for colour fixes.
+2. Add an entry at the top of `<CHANGES>` in `cyberpunk-theme.plg` (`###<version> (<tag>)` and a few lines). Unraid shows it on the Plugins page.
+3. Build. This writes the package to `build/` and stamps the version, tag and MD5 into the `.plg`:
 
 ```bash
-git tag -a vX.Y.Z -m "vX.Y.Z: <what changed>"
-git push origin vX.Y.Z
-gh release create vX.Y.Z --title "vX.Y.Z" --notes "<what changed>"
+python tools/build_plugin.py 2026.11.07 v2.0.0
 ```
 
-4. Check the install lines from the README work: run steps 1 and 3 of **Install** on a test server, or at least confirm the release archive downloads and contains the new palette.
+4. Bump the tag in the README's manual install lines (the URL and the extracted folder name).
+5. Commit, push, then publish the release with the package straight away. Between the push and the upload, a server that checks for updates finds a package that is not there yet and simply reports an error; the next check works.
 
-Use a minor version (`1.2.0` to `1.3.0`) for new palettes and a patch version (`1.2.0` to `1.2.1`) for colour fixes.
+```bash
+git push origin main
+git tag -a vX.Y.Z -m "vX.Y.Z: <what changed>"
+git push origin vX.Y.Z
+gh release create vX.Y.Z build/cyberpunk-theme-<version>-noarch-1.txz --title "vX.Y.Z" --notes "<what changed>"
+```
+
+6. Check it: download the `.plg` from the raw URL and the package from the release, and compare the MD5 with the one in the `.plg`. Then install from the URL on a test server (Plugins > Install Plugin), or on a server that already runs it, check for updates on the Plugins page.

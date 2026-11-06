@@ -1,0 +1,24 @@
+/* @group Mass Effect @desc N7 armour: red with white and steel */
+/* n7: N7 red with white and steel accents, after the N7 armour of the Mass
+ * Effect games. The reds are the game's own (#FF3333 shop text, #CC0000 area
+ * map) and the white and steels come from the N7 Elite medal, all sampled
+ * from Mass Effect 1; the dark backgrounds are tinted towards the medal's
+ * steel. No game asset is included. */
+:root {
+    --cp-pri: #FF3333;        /* headings, active tab, accents: N7 red */
+    --cp-pri-dark: #CC0000;
+    --cp-pri-faint: #2A0A0C;
+    --cp-sec: #E6ECEF;        /* values, links, bars: armour white */
+    --cp-sec-dim: #89989F;    /* medal steel */
+    --cp-hi: #BDC8D0;         /* highlights: medal silver */
+    --cp-faint: #1E2A31;      /* hairlines, bar tracks: dark steel */
+    --cp-ok: #50E280;         /* paragon green */
+    --cp-warn: #FFB020;
+    --cp-err: #FF5C5C;
+    --cp-bg: #090C0F;         /* gunmetal black */
+    --cp-panel: #10151A;
+    --cp-panel-alt: #151C22;
+    --cp-deep: #06080A;
+    --cp-txt: #E1E6E9;
+    --cp-txt-dim: #9FAAB1;
+}

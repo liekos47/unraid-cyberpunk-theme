@@ -1,5 +1,6 @@
-# Copy to /boot/config/cyberpunk-theme/theme.cfg and pick a palette.
-# netrunner = red and cyan, relic = yellow and blue, edgerunner = yellow and
-# green on black, lunar = pink and cyan on violet, phantom-liberty = crimson and
-# silver on red-black. Add your own as palettes/<name>.css.
+# Manual install only (the plugin has a settings page instead).
+# Copy to /boot/config/cyberpunk-theme/theme.cfg and pick a palette: any file
+# in palettes/ without .css (netrunner, relic, phantom-liberty, edgerunner,
+# lunar, midnight, neon-night, normandy, n7), or off for the stock Unraid look.
+# The next page load uses it; no reinstall needed.
 PALETTE=netrunner

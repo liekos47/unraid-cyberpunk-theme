@@ -3,20 +3,31 @@ Link="cp-theme-anchor"
 Markdown="false"
 ---
 <?php
-/* Cyberpunk webGUI theme. "Buttons" pages are evaluated on every page, after
- * the built-in theme stylesheet, so these links override it without touching
- * any Unraid file. Kill switch: touch /boot/config/cyberpunk-theme/DISABLED
- * (takes effect on the next page load, no reboot).
+/* Cyberpunk webGUI theme loader. "Buttons" pages are evaluated on every page,
+ * after the built-in theme stylesheet, so these links override it without
+ * touching any Unraid file.
+ *
+ * Palette: PALETTE=<name> (a file in palettes/) or PALETTE=off, read from the
+ * plugin's settings file, or from theme.cfg for a manual install.
+ * Kill switch: touch /boot/config/plugins/cyberpunk-theme/DISABLED (plugin)
+ * or /boot/config/cyberpunk-theme/DISABLED (manual install).
  */
 $cpRoot = '/usr/local/emhttp/plugins/cyberpunk-theme';
-if (!file_exists('/boot/config/cyberpunk-theme/DISABLED') && file_exists("$cpRoot/cyberpunk.css")):
+$cpCfgFile = file_exists('/boot/config/plugins/cyberpunk-theme/cyberpunk-theme.cfg')
+  ? '/boot/config/plugins/cyberpunk-theme/cyberpunk-theme.cfg'
+  : '/boot/config/cyberpunk-theme/theme.cfg';
+$cpCfg = file_exists($cpCfgFile) ? (@parse_ini_file($cpCfgFile) ?: []) : [];
+$cpPalette = $cpCfg['PALETTE'] ?? 'netrunner';
+if (!preg_match('/^[a-z0-9-]+$/', $cpPalette) || ($cpPalette != 'off' && !file_exists("$cpRoot/palettes/$cpPalette.css"))) $cpPalette = 'netrunner';
+$cpDisabled = file_exists('/boot/config/plugins/cyberpunk-theme/DISABLED') || file_exists('/boot/config/cyberpunk-theme/DISABLED');
+if (!$cpDisabled && $cpPalette != 'off' && file_exists("$cpRoot/cyberpunk.css")):
   $cpLogo = file_exists("$cpRoot/icons/logo.png") ? 'logo.png' : 'logo.svg';
   $cpFavicons = file_exists("$cpRoot/icons/fav-green-on.png");
 ?>
-<link type="text/css" rel="stylesheet" href="<?autov('/plugins/cyberpunk-theme/fonts.css')?>">
-<link type="text/css" rel="stylesheet" href="<?autov('/plugins/cyberpunk-theme/palette.css')?>">
-<link type="text/css" rel="stylesheet" href="<?autov('/plugins/cyberpunk-theme/cyberpunk.css')?>">
-<style>:root{--cp-logo:url('/plugins/cyberpunk-theme/icons/<?=$cpLogo?>')}</style>
+<link id="cp-fonts" type="text/css" rel="stylesheet" href="<?autov('/plugins/cyberpunk-theme/fonts.css')?>">
+<link id="cp-palette" type="text/css" rel="stylesheet" href="<?autov("/plugins/cyberpunk-theme/palettes/$cpPalette.css")?>">
+<link id="cp-main" type="text/css" rel="stylesheet" href="<?autov('/plugins/cyberpunk-theme/cyberpunk.css')?>">
+<style id="cp-logo">:root{--cp-logo:url('/plugins/cyberpunk-theme/icons/<?=$cpLogo?>')}</style>
 <script>
 (function () {
   document.documentElement.classList.add('cp-theme');

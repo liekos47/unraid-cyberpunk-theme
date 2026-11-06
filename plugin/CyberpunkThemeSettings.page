@@ -1,0 +1,160 @@
+Menu="Utilities"
+Title="Cyberpunk Theme"
+Icon="paint-brush"
+Tag="paint-brush"
+Markdown="false"
+---
+<?php
+/* Settings page: pick a palette, preview it live, apply it, or reset to the
+ * stock Unraid look. The choice is saved to
+ * /boot/config/plugins/cyberpunk-theme/cyberpunk-theme.cfg through Unraid's
+ * own update.php and read by CyberpunkTheme.page on every page load.
+ */
+$cpRoot = '/usr/local/emhttp/plugins/cyberpunk-theme';
+$cpCfgFile = '/boot/config/plugins/cyberpunk-theme/cyberpunk-theme.cfg';
+$cpCfg = file_exists($cpCfgFile) ? (@parse_ini_file($cpCfgFile) ?: []) : [];
+$cpCurrent = $cpCfg['PALETTE'] ?? 'netrunner';
+
+// Palettes: every palettes/<name>.css. The first line may carry
+// "@group <group> @desc <description>"; files without it go under "Custom".
+$cpOrder = ['Cyberpunk 2077', 'Cyberpunk: Edgerunners', 'Neon', 'Mass Effect'];
+$cpGroups = [];
+$cpColours = [];
+foreach (glob("$cpRoot/palettes/*.css") as $f) {
+  $name = basename($f, '.css');
+  if (!preg_match('/^[a-z0-9-]+$/', $name)) continue;
+  $css = file_get_contents($f);
+  $group = preg_match('/@group\s+(.+?)\s+@desc/', $css, $m) ? $m[1] : 'Custom';
+  $desc = preg_match('/@desc\s+(.+?)\s*\*\//', $css, $m) ? $m[1] : '';
+  $cpGroups[$group][$name] = $desc;
+  preg_match_all('/--cp-([a-z-]+):\s*(#[0-9A-Fa-f]{6})/', $css, $mm, PREG_SET_ORDER);
+  foreach ($mm as $c) $cpColours[$name][$c[1]] = $c[2];
+}
+// The default palette leads its group.
+foreach ($cpGroups as $g => $names) if (isset($names['netrunner'])) $cpGroups[$g] = ['netrunner' => $names['netrunner']] + $names;
+uksort($cpGroups, function ($a, $b) use ($cpOrder) {
+  $ia = array_search($a, $cpOrder); $ib = array_search($b, $cpOrder);
+  $ia = $ia === false ? 99 : $ia; $ib = $ib === false ? 99 : $ib;
+  return $ia == $ib ? strcmp($a, $b) : $ia - $ib;
+});
+$cpManual = file_exists('/boot/config/cyberpunk-theme/install.sh');
+$cpDisabledFile = file_exists('/boot/config/plugins/cyberpunk-theme/DISABLED') ? '/boot/config/plugins/cyberpunk-theme/DISABLED'
+  : (file_exists('/boot/config/cyberpunk-theme/DISABLED') ? '/boot/config/cyberpunk-theme/DISABLED' : '');
+$h = function ($s) { return htmlspecialchars($s, ENT_QUOTES); };
+?>
+<style>
+#cp-settings dd.cp-row{flex-direction:row;flex-wrap:wrap;align-items:center;gap:10px}
+#cp-settings dd.cp-row input[type=button]{width:auto;min-width:120px;margin:0}
+#cp-settings dd.cp-row .cp-note{flex-basis:100%}
+#cp-settings dd.cp-kofi-row{align-items:flex-start}
+#cp-settings .cp-swatches{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+#cp-settings .cp-swatch{width:44px;height:28px;border:1px solid rgba(128,128,128,.5);border-radius:2px}
+#cp-settings .cp-note{opacity:.85;font-size:.95em;margin-top:6px}
+#cp-settings .cp-warn{border-left:3px solid #e5a000;padding:6px 10px;margin:0 0 14px}
+#cp-settings .cp-kofi{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:4px;
+  background:#C7302B;color:#fff !important;text-decoration:none;font-weight:600;letter-spacing:.03em}
+#cp-settings .cp-kofi:hover{background:#A82420}
+#cp-settings .cp-kofi svg{width:20px;height:20px;fill:#fff}
+</style>
+<div id="cp-settings">
+<?php if ($cpManual): ?>
+<p class="cp-warn"><b>A manual install was found</b> in <code>/boot/config/cyberpunk-theme</code>. It reinstalls itself from <code>/boot/config/go</code> at every boot and would replace this plugin's files. Remove it with <code>bash /boot/config/cyberpunk-theme/uninstall.sh</code>, then delete that folder.</p>
+<?php endif; ?>
+<?php if ($cpDisabledFile): ?>
+<p class="cp-warn"><b>The theme is switched off</b> by the kill switch <code><?=$h($cpDisabledFile)?></code>. Delete that file to use the palette chosen here.</p>
+<?php endif; ?>
+<dl>
+  <dt>Theme:</dt>
+  <dd>
+    <select id="cp-select">
+      <option value="off"<?=$cpCurrent == 'off' ? ' selected' : ''?>>Unraid default (theme off)</option>
+<?php foreach ($cpGroups as $group => $names): ?>
+      <optgroup label="<?=$h($group)?>">
+<?php foreach ($names as $name => $desc): ?>
+        <option value="<?=$h($name)?>"<?=$cpCurrent == $name ? ' selected' : ''?>><?=$h($name)?><?=$desc ? ': ' . $h($desc) : ''?></option>
+<?php endforeach; ?>
+      </optgroup>
+<?php endforeach; ?>
+    </select>
+    <div class="cp-swatches" id="cp-swatches"></div>
+    <div class="cp-note">Picking a theme previews it on this page straight away. Press Apply to keep it on every page.</div>
+  </dd>
+  <dt>&nbsp;</dt>
+  <dd class="cp-row">
+    <input type="button" id="cp-apply" value="Apply">
+    <input type="button" id="cp-reset" value="Reset to default">
+    <input type="button" id="cp-cancel" value="Cancel" onclick="location.reload()">
+    <div class="cp-note">Reset to default switches the theme off and brings back the stock Unraid look. The plugin stays installed, so you can pick a theme again at any time.</div>
+  </dd>
+  <dt>Support:</dt>
+  <dd class="cp-kofi-row">
+    <a class="cp-kofi" href="https://ko-fi.com/liekos47" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h14v2h2a3 3 0 0 1 0 6h-2.1A6 6 0 0 1 11 18H9a6 6 0 0 1-6-6V5zm14 4v2h2a1 1 0 0 0 0-2h-2zM8 8.2c-1.3 0-2 1-2 2 0 1.6 2.1 3 4 4.3 1.9-1.3 4-2.7 4-4.3 0-1-.7-2-2-2-.9 0-1.6.5-2 1.2-.4-.7-1.1-1.2-2-1.2z"/></svg>Support me on Ko-fi</a>
+    <div class="cp-note">The theme is free. If you enjoy it, a coffee keeps new palettes coming.</div>
+  </dd>
+</dl>
+</div>
+<script>
+(function () {
+  var colours = <?=json_encode($cpColours)?>;
+  var current = <?=json_encode($cpCurrent)?>;
+  var base = '/plugins/cyberpunk-theme/';
+  var select = document.getElementById('cp-select');
+
+  function ensureLink(id, href) {
+    var l = document.getElementById(id);
+    if (!l) {
+      l = document.createElement('link');
+      l.id = id; l.rel = 'stylesheet'; l.type = 'text/css';
+      document.head.appendChild(l);
+    }
+    if (href && (l.getAttribute('href') || '').split('?')[0] != href) l.href = href;
+    l.disabled = false;
+    return l;
+  }
+  function preview(name) {
+    var ids = ['cp-fonts', 'cp-palette', 'cp-main'];
+    if (name == 'off') {
+      ids.forEach(function (id) { var l = document.getElementById(id); if (l) l.disabled = true; });
+      document.documentElement.classList.remove('cp-theme');
+    } else {
+      if (!document.getElementById('cp-logo')) {
+        var s = document.createElement('style');
+        s.id = 'cp-logo';
+        s.textContent = ":root{--cp-logo:url('" + base + "icons/logo.svg')}";
+        document.head.appendChild(s);
+      }
+      ensureLink('cp-fonts', document.getElementById('cp-fonts') ? null : base + 'fonts.css');
+      ensureLink('cp-palette', base + 'palettes/' + name + '.css');
+      ensureLink('cp-main', document.getElementById('cp-main') ? null : base + 'cyberpunk.css');
+      document.documentElement.classList.add('cp-theme');
+    }
+    show(name);
+  }
+  // Swatches and button states only, no styles: used on page load so the
+  // page honours the kill switch until you pick something.
+  function show(name) {
+    // Unraid disables "Apply" buttons until a form changes; this page has no
+    // form, so Apply is live whenever the choice differs from the saved one.
+    document.getElementById('cp-apply').disabled = (name == current);
+    document.getElementById('cp-reset').disabled = (current == 'off');
+    var box = document.getElementById('cp-swatches');
+    box.innerHTML = '';
+    var c = colours[name];
+    if (c) ['bg', 'panel', 'pri', 'sec', 'hi', 'txt', 'ok', 'warn', 'err'].forEach(function (k) {
+      if (!c[k]) return;
+      var d = document.createElement('div');
+      d.className = 'cp-swatch'; d.style.background = c[k]; d.title = k + ' ' + c[k];
+      box.appendChild(d);
+    });
+  }
+  function save(name) {
+    $.post('/update.php', {'#file': 'cyberpunk-theme/cyberpunk-theme.cfg', PALETTE: name, csrf_token: csrf_token})
+      .done(function () { location.reload(); })
+      .fail(function () { select.value = current; preview(current); });
+  }
+  select.addEventListener('change', function () { preview(select.value); });
+  document.getElementById('cp-apply').addEventListener('click', function () { save(select.value); });
+  document.getElementById('cp-reset').addEventListener('click', function () { select.value = 'off'; preview('off'); save('off'); });
+  show(select.value);
+})();
+</script>

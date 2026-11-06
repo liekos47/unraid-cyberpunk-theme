@@ -13,11 +13,15 @@ FONT_BASE=https://raw.githubusercontent.com/google/fonts/main/ofl
 log() { logger -t cyberpunk-theme "$*"; echo "$*"; }
 
 [ -d "$SRC/plugin" ] || { log "no $SRC/plugin, nothing to install"; exit 0; }
+# The Unraid plugin (cyberpunk-theme.plg) owns the same folder: leave it alone.
+[ -f /boot/config/plugins/cyberpunk-theme.plg ] && { log "the cyberpunk-theme plugin is installed, skipping the manual install"; exit 0; }
 
-# Palette: PALETTE=<name> in theme.cfg, matching palettes/<name>.css. Default netrunner.
+# Palette: PALETTE=<name> in theme.cfg, matching palettes/<name>.css, or
+# PALETTE=off for the stock look. Default netrunner. The loader page reads
+# theme.cfg on every page load, so changing it needs no reinstall.
 PALETTE=netrunner
 [ -f "$SRC/theme.cfg" ] && . "$SRC/theme.cfg"
-[ -f "$SRC/palettes/$PALETTE.css" ] || { log "palette '$PALETTE' not found in $SRC/palettes"; exit 1; }
+[ "$PALETTE" = off ] || [ -f "$SRC/palettes/$PALETTE.css" ] || { log "palette '$PALETTE' not found in $SRC/palettes"; exit 1; }
 
 # Fonts (SIL OFL): fetched once into the flash drive, reused at every boot.
 # A failed download is not fatal: the theme falls back to the stock fonts.
@@ -38,9 +42,10 @@ fetch 'orbitron/Orbitron%5Bwght%5D.ttf' Orbitron-wght.ttf
 # leaves a half-installed theme.
 tmp="$DST.new"
 rm -rf "$tmp"
-mkdir -p "$tmp/fonts" "$tmp/icons" || { log "mkdir failed"; exit 1; }
-cp "$SRC"/plugin/* "$tmp/" \
-  && cp "$SRC/palettes/$PALETTE.css" "$tmp/palette.css" \
+mkdir -p "$tmp/fonts" "$tmp/icons" "$tmp/palettes" || { log "mkdir failed"; exit 1; }
+# The settings page belongs to the plugin; a manual install uses theme.cfg.
+cp "$SRC"/plugin/CyberpunkTheme.page "$SRC"/plugin/*.css "$tmp/" \
+  && cp "$SRC"/palettes/*.css "$tmp/palettes/" \
   && cp "$SRC"/icons/* "$tmp/icons/" \
   || { log "copy failed, leaving the current install alone"; rm -rf "$tmp"; exit 1; }
 cp "$SRC"/fonts/*.ttf "$tmp/fonts/" 2>/dev/null

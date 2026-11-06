@@ -1,0 +1,71 @@
+<?xml version='1.0' standalone='yes'?>
+<!DOCTYPE PLUGIN [
+<!ENTITY name      "cyberpunk-theme">
+<!ENTITY author    "liekos47">
+<!ENTITY version   "2026.11.07">
+<!ENTITY tag       "v2.0.0">
+<!ENTITY md5       "d826300c743a98d6f8a41e2a5a8af4ae">
+<!ENTITY repo      "liekos47/unraid-cyberpunk-theme">
+<!ENTITY package   "&name;-&version;-noarch-1">
+<!ENTITY pluginURL "https://raw.githubusercontent.com/&repo;/main/&name;.plg">
+<!ENTITY plugdir   "/boot/config/plugins/&name;">
+]>
+<!-- version, tag and md5 are stamped by tools/build_plugin.py; do not edit them by hand. -->
+<PLUGIN name="&name;"
+        author="&author;"
+        version="&version;"
+        pluginURL="&pluginURL;"
+        support="https://github.com/&repo;/issues"
+        icon="paint-brush"
+        min="7.0.0">
+
+<CHANGES>
+###2026.11.07 (v2.0.0)
+- First release as an Unraid plugin: install from Plugins, Install Plugin.
+- Settings, User Utilities, Cyberpunk Theme: pick a palette from a grouped list with a live preview, Apply, or Reset to the stock Unraid look.
+- Fonts are bundled, nothing is downloaded at boot.
+- Palettes: netrunner, relic, phantom-liberty, edgerunner, lunar, midnight, neon-night, normandy, and new n7 (Mass Effect N7 red with white and steel).
+</CHANGES>
+
+<!-- Remove packages left by earlier versions. -->
+<FILE Run="/bin/bash">
+<INLINE>
+mkdir -p &plugdir;
+for f in &plugdir;/&name;-*.txz; do
+  [ -e "$f" ] || continue
+  [ "$f" = "&plugdir;/&package;.txz" ] || rm -f "$f"
+done
+</INLINE>
+</FILE>
+
+<!-- The theme itself. -->
+<FILE Name="&plugdir;/&package;.txz" Run="upgradepkg --install-new">
+<URL>https://github.com/&repo;/releases/download/&tag;/&package;.txz</URL>
+<MD5>&md5;</MD5>
+</FILE>
+
+<!-- First install: default palette. An existing choice is kept. -->
+<FILE Run="/bin/bash">
+<INLINE>
+[ -f &plugdir;/&name;.cfg ] || echo 'PALETTE="netrunner"' > &plugdir;/&name;.cfg
+# Your own logo and favicons (see README): kept on the flash drive, copied in at every boot.
+if [ -d &plugdir;/icons ]; then cp &plugdir;/icons/*.png /usr/local/emhttp/plugins/&name;/icons/ 2>/dev/null; fi
+if [ -f /boot/config/cyberpunk-theme/install.sh ]; then
+  echo "Note: a manual install was found in /boot/config/cyberpunk-theme."
+  echo "Remove it with: bash /boot/config/cyberpunk-theme/uninstall.sh"
+fi
+echo "Cyberpunk Theme installed. Pick a palette in Settings, User Utilities, Cyberpunk Theme, then reload the page."
+</INLINE>
+</FILE>
+
+<!-- Uninstall: back to the stock look, nothing left behind. -->
+<FILE Run="/bin/bash" Method="remove">
+<INLINE>
+removepkg &package; >/dev/null 2>&amp;1
+rm -rf /usr/local/emhttp/plugins/&name;
+rm -rf &plugdir;
+echo "Cyberpunk Theme removed. Reload the page for the stock Unraid look."
+</INLINE>
+</FILE>
+
+</PLUGIN>
