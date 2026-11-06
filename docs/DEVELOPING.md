@@ -93,7 +93,7 @@ Screenshots show your server's details, so replace them first:
 
 The plugin has two parts: `cyberpunk-theme.plg` on `main`, which every server checks for updates, and the package `cyberpunk-theme-<version>-noarch-1.txz`, attached to a GitHub release. The `.plg` names the release tag and the package's MD5, so the two must go out together.
 
-1. Pick the plugin version, the release date as `YYYY.MM.DD` (a second release on the same day takes a letter: `2026.11.07a`), and the release tag: a minor version (`2.0.0` to `2.1.0`) for new palettes or features, a patch version (`2.0.0` to `2.0.1`) for colour fixes.
+1. Pick the plugin version, the release date as `YYYY.MM.DD` (a second release on the same day adds a number: `2026.11.07.1`; not a letter, which Unraid's package tool ranks below the plain date and then skips), and the release tag: a minor version (`2.0.0` to `2.1.0`) for new palettes or features, a patch version (`2.0.0` to `2.0.1`) for colour fixes.
 2. Add an entry at the top of `<CHANGES>` in `cyberpunk-theme.plg` (`###<version> (<tag>)` and a few lines). Unraid shows it on the Plugins page.
 3. Build. This writes the package to `build/` and stamps the version, tag and MD5 into the `.plg`:
 

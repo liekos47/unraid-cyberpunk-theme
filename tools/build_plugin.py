@@ -60,7 +60,7 @@ def files(font_dir):
 
 
 def build(version):
-    # A second build on the same day takes a letter: 2026.11.07a.
+    # A second release on the same day adds a number: 2026.11.07.1.
     mtime = int(time.mktime(time.strptime(version[:10], "%Y.%m.%d")))
     pkg = BUILD / f"{NAME}-{version}-noarch-1.txz"
     entries = files(fetch_fonts())
@@ -91,7 +91,7 @@ def stamp(version, tag, md5):
 
 
 def main():
-    if len(sys.argv) != 3 or not re.fullmatch(r"\d{4}\.\d{2}\.\d{2}[a-z]?", sys.argv[1]) or not sys.argv[2].startswith("v"):
+    if len(sys.argv) != 3 or not re.fullmatch(r"\d{4}\.\d{2}\.\d{2}(\.\d+)?", sys.argv[1]) or not sys.argv[2].startswith("v"):
         sys.exit(__doc__)
     version, tag = sys.argv[1], sys.argv[2]
     pkg, count = build(version)

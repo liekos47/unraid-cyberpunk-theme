@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "cyberpunk-theme">
 <!ENTITY author    "liekos47">
-<!ENTITY version   "2026.11.07">
-<!ENTITY tag       "v2.0.0">
+<!ENTITY version   "2026.11.07.1">
+<!ENTITY tag       "v2.0.1">
 <!ENTITY md5       "d826300c743a98d6f8a41e2a5a8af4ae">
 <!ENTITY repo      "liekos47/unraid-cyberpunk-theme">
 <!ENTITY package   "&name;-&version;-noarch-1">
@@ -17,9 +17,14 @@
         pluginURL="&pluginURL;"
         support="https://github.com/&repo;/issues"
         icon="paint-brush"
+        launch="Settings/CyberpunkThemeSettings"
         min="7.0.0">
 
 <CHANGES>
+###2026.11.07.1 (v2.0.1)
+- The plugin's icon on the Plugins page now opens the theme settings.
+- An update keeps the previous package on the flash drive until the new one has downloaded and installed.
+
 ###2026.11.07 (v2.0.0)
 - First release as an Unraid plugin: install from Plugins, Install Plugin.
 - Settings, User Utilities, Cyberpunk Theme: pick a palette from a grouped list with a live preview, Apply, or Reset to the stock Unraid look.
@@ -27,21 +32,21 @@
 - Palettes: netrunner, relic, phantom-liberty, edgerunner, lunar, midnight, neon-night, normandy, and new n7 (Mass Effect N7 red with white and steel).
 </CHANGES>
 
-<!-- Remove packages left by earlier versions. -->
+<!-- The theme itself. If the download fails, the plugin manager stops here
+     and the previous package stays on the flash drive. -->
+<FILE Name="&plugdir;/&package;.txz" Run="upgradepkg --install-new">
+<URL>https://github.com/&repo;/releases/download/&tag;/&package;.txz</URL>
+<MD5>&md5;</MD5>
+</FILE>
+
+<!-- Only now remove packages left by earlier versions. -->
 <FILE Run="/bin/bash">
 <INLINE>
-mkdir -p &plugdir;
 for f in &plugdir;/&name;-*.txz; do
   [ -e "$f" ] || continue
   [ "$f" = "&plugdir;/&package;.txz" ] || rm -f "$f"
 done
 </INLINE>
-</FILE>
-
-<!-- The theme itself. -->
-<FILE Name="&plugdir;/&package;.txz" Run="upgradepkg --install-new">
-<URL>https://github.com/&repo;/releases/download/&tag;/&package;.txz</URL>
-<MD5>&md5;</MD5>
 </FILE>
 
 <!-- First install: default palette. An existing choice is kept. -->
