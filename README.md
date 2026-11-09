@@ -84,6 +84,8 @@ Then open **Settings > User Utilities > Cyberpunk Theme**:
 
 Unraid reinstalls the plugin at every boot and keeps your choice on the flash drive (`/boot/config/plugins/cyberpunk-theme/cyberpunk-theme.cfg`). Updates show on the Plugins page like any other plugin.
 
+Questions and support: the [Unraid forum thread](https://forums.unraid.net/topic/201118-plugin-cyberpunk-theme-for-unraid-7x-nine-neon-palettes-picked-from-a-settings-page-no-unraid-files-modified/). Bug reports and new palettes: [GitHub issues](https://github.com/liekos47/unraid-cyberpunk-theme/issues).
+
 ## Turn off, uninstall
 
 - **Back to the stock look, plugin kept:** Reset to default on the settings page.

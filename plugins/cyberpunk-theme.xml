@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Community Apps wrapper for cyberpunk-theme.plg. PluginURL must match the
+     pluginURL in the .plg exactly. Support comes from the .plg's support
+     attribute; the Support tag here is the fallback CA asks for. -->
+<Plugin>
+  <Name>Cyberpunk Theme</Name>
+  <PluginAuthor>liekos47</PluginAuthor>
+  <PluginURL>https://raw.githubusercontent.com/liekos47/unraid-cyberpunk-theme/main/cyberpunk-theme.plg</PluginURL>
+  <Overview>A dark, neon theme for the Unraid 7.x webGUI: near-black panels, angular cut corners, Rajdhani and Orbitron type, flat usage bars and outlined buttons. Nine palettes (netrunner, relic, phantom-liberty, edgerunner, lunar, midnight, neon-night, normandy and n7), picked from Settings, User Utilities, Cyberpunk Theme with a live preview, so each server can have its own colour. No Unraid file is modified: the theme is a page Unraid loads after its own stylesheet, and Reset to default brings back the stock look. Fonts are bundled, nothing is downloaded at boot, and every palette is checked for 4.5:1 text contrast. Fan-made, colour values only, no game or show assets; not affiliated with CD PROJEKT RED, Studio Trigger, BioWare, Electronic Arts or Lime Technology.</Overview>
+  <Category>Tools:Themes</Category>
+  <Icon>https://raw.githubusercontent.com/liekos47/unraid-cyberpunk-theme/main/icon.png</Icon>
+  <Support>https://forums.unraid.net/topic/201118-plugin-cyberpunk-theme-for-unraid-7x-nine-neon-palettes-picked-from-a-settings-page-no-unraid-files-modified/</Support>
+  <Project>https://github.com/liekos47/unraid-cyberpunk-theme</Project>
+  <ReadMe>https://raw.githubusercontent.com/liekos47/unraid-cyberpunk-theme/main/README.md</ReadMe>
+  <License>MIT</License>
+  <MinVer>7.0.0</MinVer>
+  <ExtraSearchTerms>theme css dark neon cyberpunk mass effect palette webgui</ExtraSearchTerms>
+  <DonateLink>https://ko-fi.com/liekos47</DonateLink>
+  <DonateText>Support liekos47 on Ko-fi</DonateText>
+  <Screenshot>https://raw.githubusercontent.com/liekos47/unraid-cyberpunk-theme/main/docs/screenshots/settings.png</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/liekos47/unraid-cyberpunk-theme/main/docs/screenshots/netrunner.png</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/liekos47/unraid-cyberpunk-theme/main/docs/screenshots/relic.png</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/liekos47/unraid-cyberpunk-theme/main/docs/screenshots/phantom-liberty.png</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/liekos47/unraid-cyberpunk-theme/main/docs/screenshots/edgerunner.png</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/liekos47/unraid-cyberpunk-theme/main/docs/screenshots/lunar.png</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/liekos47/unraid-cyberpunk-theme/main/docs/screenshots/midnight.png</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/liekos47/unraid-cyberpunk-theme/main/docs/screenshots/neon-night.png</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/liekos47/unraid-cyberpunk-theme/main/docs/screenshots/normandy.png</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/liekos47/unraid-cyberpunk-theme/main/docs/screenshots/n7.png</Screenshot>
+</Plugin>

@@ -15,7 +15,7 @@
         author="&author;"
         version="&version;"
         pluginURL="&pluginURL;"
-        support="https://github.com/&repo;/issues"
+        support="https://forums.unraid.net/topic/201118-plugin-cyberpunk-theme-for-unraid-7x-nine-neon-palettes-picked-from-a-settings-page-no-unraid-files-modified/"
         icon="paint-brush"
         launch="Settings/CyberpunkThemeSettings"
         min="7.0.0">

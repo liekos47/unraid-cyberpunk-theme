@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CommunityApplications>
+  <Profile>
+Cyberpunk Theme for the Unraid 7.x webGUI, by liekos47. A dark, neon theme layered over the stock webGUI with nine palettes, picked from a settings page with a live preview. No Unraid file is modified, and Reset to default brings back the stock look at any time.
+
+Fan-made: the palettes take colour values only from Cyberpunk 2077, Cyberpunk: Edgerunners and Mass Effect, with no game or show assets. Not affiliated with CD PROJEKT RED, Studio Trigger, BioWare, Electronic Arts or Lime Technology.
+
+Support is in the Unraid forum thread. Bug reports and new palettes are welcome on GitHub.
+  </Profile>
+  <Icon>https://raw.githubusercontent.com/liekos47/unraid-cyberpunk-theme/main/icon.png</Icon>
+  <WebPage>https://github.com/liekos47/unraid-cyberpunk-theme</WebPage>
+  <Forum>https://forums.unraid.net/topic/201118-plugin-cyberpunk-theme-for-unraid-7x-nine-neon-palettes-picked-from-a-settings-page-no-unraid-files-modified/</Forum>
+  <DonateLink>https://ko-fi.com/liekos47</DonateLink>
+  <DonateText>Support liekos47 on Ko-fi</DonateText>
+</CommunityApplications>

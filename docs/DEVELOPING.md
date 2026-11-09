@@ -112,3 +112,13 @@ gh release create vX.Y.Z build/cyberpunk-theme-<version>-noarch-1.txz --title "v
 ```
 
 6. Check it: download the `.plg` from the raw URL and the package from the release, and compare the MD5 with the one in the `.plg`. Then install from the URL on a test server (Plugins > Install Plugin), or on a server that already runs it, check for updates on the Plugins page.
+
+### Community Apps listing
+
+Community Apps reads three files from `main`, so a release needs no extra step there: it picks up the new `.plg` on its next feed refresh.
+
+- `ca_profile.xml`: the repository profile (description, icon, forum thread, Ko-fi).
+- `plugins/cyberpunk-theme.xml`: the plugin's listing. Its `PluginURL` must match the `pluginURL` in the `.plg` exactly. Update its `Overview` and `Screenshot` lines when a palette is added.
+- `icon.png`: the 256 px icon both files point at, drawn by `python tools/make_ca_icon.py`. It sits outside `icons/`, so it is not packed into the plugin.
+
+The support link CA shows comes from the `.plg`'s `support` attribute (the forum thread), which overrides the `Support` tag in the listing. After changing any of these, run **Validate** and **Scan** at https://ca.unraid.net/submit/new.
